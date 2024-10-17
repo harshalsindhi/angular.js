@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script> 
+<body ng-app="">
+
+    <p>Try writing in the input field:</p>
+    
+    <form name="myForm">
+    <input type="name" name="myInput" ng-model="myInput" required>
+    <span ng-show="myForm.myInput.$touched && myForm.myInput.$invalid">Please Enter the name</span>
+    </form>
+    
+    
+    
+    </body>
+    </html>
+    

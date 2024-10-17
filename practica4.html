@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Angular Dynamic Template</title>
+<script
+src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angularroute.js"></script>
+<style>
+body {
+text-align: center;
+font-family: Arial, Helvetica, sans-serif;
+}
+h1 { color: green; }
+</style>
+</head>
+<body>
+<h1>Welcome to TYBCA</h1>
+<h3>Angular Dynamic Template</h3>
+<div ng-app="hvp">
+<p>
+<a href="#!addCourse">Add Course</a>
+</p>
+<p>
+<a href="#!viewCourses">View Courses</a>
+</p>
+<div ng-view></div>
+<script type="text/ng-template" id="addCourse.html">
+<h2> Add Course </h2> {{message}}
+</script>
+<script type="text/ng-template" id="viewCourses.html">
+<h2> View Courses </h2> {{message}}
+</script>
+</div>
+<script>
+var hvp = angular.module("hvp", ['ngRoute']);
+hvp.config(['$routeProvider', function ($routeProvider) {
+$routeProvider
+.when('/addCourse', {
+templateUrl: 'addCourse.html',
+controller: 'AddCourseController'
+})
+.when('/viewCourses', {
+templateUrl: 'viewCourses.html',
+controller: 'ViewCoursesController'
+})
+.otherwise({
+redirectTo: '/addCourse'
+});
+} ]);
+hvp.controller('AddCourseController', function ($scope) {
+$scope.message = "This page will be used to display add Course";
+});
+hvp.controller('ViewCoursesController', function ($scope) {
+$scope.message = "This page will be used to display all the Courses";
+});
+</script>
+</body>
+</html>
